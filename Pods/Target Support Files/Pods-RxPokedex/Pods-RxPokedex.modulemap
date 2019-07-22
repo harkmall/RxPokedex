@@ -1,6 +1,0 @@
-framework module Pods_RxPokedex {
-  umbrella header "Pods-RxPokedex-umbrella.h"
-
-  export *
-  module * { export * }
-}
