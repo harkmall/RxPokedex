@@ -59,10 +59,10 @@ struct NetworkManager {
                     let response = try JSONDecoder().decode(PokemonListResponse.self, from: data)
                     url = response.next
                     observer.onNext(response)
+                    observer.onCompleted()
                 } catch {
                     observer.onError(PokemonErrors.error)
                 }
-
             }
             return Disposables.create()
         }
@@ -78,6 +78,7 @@ struct NetworkManager {
                 do {
                     let response = try JSONDecoder().decode(PokemonDetails.self, from: data)
                     observer.onNext(response)
+                    observer.onCompleted()
                 } catch {
                     observer.onError(PokemonErrors.error)
                 }

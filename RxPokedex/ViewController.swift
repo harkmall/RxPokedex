@@ -21,18 +21,19 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         tableView.rx.contentOffset
-            .distinctUntilChanged()
-            .subscribe({ point in
-            if point.element?.y ?? 0 >= (self.tableView.contentSize.height - self.tableView.frame.size.height) {
-                self.viewModel.nextPageRelay.accept(0)
-            }
-        }).disposed(by: disposeBag)
+            .map { $0.y >= (self.tableView.contentSize.height - self.tableView.frame.size.height) }
+            .asSignal(onErrorJustReturn: false)
+            .filter { $0 }
+            .map { _ in () }
+            .emit(to: self.viewModel.nextPageRelay)
+            .disposed(by: disposeBag)
 
-        viewModel.dataSource.drive( tableView.rx.items(cellIdentifier: "PokemonCell", cellType: PokemonTableViewCell.self)) { row, pokemon, cell in
+        viewModel.dataSource.drive(tableView.rx.items(cellIdentifier: "PokemonCell", cellType: PokemonTableViewCell.self)) { row, pokemon, cell in
             cell.setup(with: pokemon)
-        }.disposed(by: disposeBag)
+            }
+            .disposed(by: disposeBag)
 
-        viewModel.nextPageRelay.accept(0)
+        viewModel.nextPageRelay.accept(())
     }
 }
 
