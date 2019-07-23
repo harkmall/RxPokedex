@@ -25,37 +25,47 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PokemonCell" rowHeight="103" id="wU7-Hx-GCF" customClass="PokemonTableViewCell" customModule="RxPokedex" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="103"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wU7-Hx-GCF" id="g7S-Fw-CkI">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wU7-Hx-GCF" id="g7S-Fw-CkI">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="102.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6RB-s4-CPS">
-                                                    <rect key="frame" x="8" y="8" width="80" height="80"/>
+                                                    <rect key="frame" x="8" y="11.5" width="80" height="80"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="DyS-DA-b2C"/>
-                                                        <constraint firstAttribute="height" constant="80" id="Hkl-8Y-unF"/>
+                                                        <constraint firstAttribute="width" secondItem="6RB-s4-CPS" secondAttribute="height" id="ZWK-Se-Xbk"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NWy-eh-5un">
-                                                    <rect key="frame" x="96" y="8" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="dOh-Lo-659">
+                                                    <rect key="frame" x="96" y="8" width="42" height="86.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NWy-eh-5un">
+                                                            <rect key="frame" x="0.0" y="0.0" width="42" height="37.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2dk-3P-4vI">
+                                                            <rect key="frame" x="0.0" y="49.5" width="42" height="37"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="6RB-s4-CPS" firstAttribute="top" secondItem="g7S-Fw-CkI" secondAttribute="top" constant="8" id="AIg-uM-1Jd"/>
-                                                <constraint firstItem="NWy-eh-5un" firstAttribute="top" relation="greaterThanOrEqual" secondItem="g7S-Fw-CkI" secondAttribute="top" constant="8" id="Iux-Lu-Q7Z"/>
-                                                <constraint firstItem="NWy-eh-5un" firstAttribute="centerY" secondItem="g7S-Fw-CkI" secondAttribute="centerY" id="RsO-iz-OM0"/>
+                                                <constraint firstItem="dOh-Lo-659" firstAttribute="top" secondItem="g7S-Fw-CkI" secondAttribute="top" constant="8" id="6ww-wv-iSA"/>
+                                                <constraint firstItem="6RB-s4-CPS" firstAttribute="centerY" secondItem="g7S-Fw-CkI" secondAttribute="centerY" id="Es0-c0-O4Y"/>
                                                 <constraint firstItem="6RB-s4-CPS" firstAttribute="leading" secondItem="g7S-Fw-CkI" secondAttribute="leading" constant="8" id="X5W-gy-JdS"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="NWy-eh-5un" secondAttribute="trailing" constant="8" id="gHg-mz-TUQ"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="NWy-eh-5un" secondAttribute="bottom" constant="8" id="gu9-BG-IUY"/>
-                                                <constraint firstAttribute="bottom" secondItem="6RB-s4-CPS" secondAttribute="bottom" constant="8" id="mIM-GG-KLW"/>
-                                                <constraint firstItem="NWy-eh-5un" firstAttribute="leading" secondItem="6RB-s4-CPS" secondAttribute="trailing" constant="8" id="w33-ck-j7O"/>
+                                                <constraint firstItem="dOh-Lo-659" firstAttribute="centerY" secondItem="g7S-Fw-CkI" secondAttribute="centerY" id="j0h-ig-9Rw"/>
+                                                <constraint firstItem="dOh-Lo-659" firstAttribute="leading" secondItem="6RB-s4-CPS" secondAttribute="trailing" constant="8" id="l1f-qh-xh6"/>
+                                                <constraint firstAttribute="bottom" secondItem="dOh-Lo-659" secondAttribute="bottom" constant="8" id="lN8-vE-YJd"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="label" destination="NWy-eh-5un" id="FvX-AL-Q9O"/>
+                                            <outlet property="order" destination="2dk-3P-4vI" id="ZqG-Yl-wY3"/>
                                             <outlet property="pokemonImageView" destination="6RB-s4-CPS" id="w73-my-F2Y"/>
                                         </connections>
                                     </tableViewCell>

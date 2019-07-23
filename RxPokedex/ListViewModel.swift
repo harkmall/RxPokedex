@@ -31,8 +31,8 @@ class ListViewModel {
 
         let activity = activityIndicator.asObservable().startWith(false)
 
-        Observable.zip(nextPageRelay, activity)
-            .flatMapLatest { (_, send) in
+        nextPageRelay.withLatestFrom(activity)
+            .flatMapLatest { send in
                 send ? Observable.empty() : NetworkManager.getPokemon().trackActivity(self.activityIndicator)
             }
             .map { $0.results }

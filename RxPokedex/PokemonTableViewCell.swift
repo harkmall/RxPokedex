@@ -13,12 +13,14 @@ class PokemonTableViewCell: UITableViewCell {
 
     @IBOutlet weak var pokemonImageView: UIImageView!
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var order: UILabel!
 
     func setup(with pokemonDetails: PokemonDetails) {
         let imageURL = URL(string: pokemonDetails.sprites.front)!
         pokemonImageView.af_setImage(withURL: imageURL)
 
         label.text = pokemonDetails.name
+        order.text = "\(pokemonDetails.order)"
     }
 
     override func prepareForReuse() {

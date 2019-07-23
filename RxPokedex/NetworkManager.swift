@@ -14,6 +14,7 @@ import RxCocoa
 struct PokemonDetails: Codable {
     var name: String
     var sprites: Sprites
+    var order: Int
 
     struct Sprites: Codable {
         var front: String
