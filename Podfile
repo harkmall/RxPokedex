@@ -4,9 +4,9 @@
 target 'RxPokedex' do
   use_frameworks!
 
-  pod 'RxSwift', '~> 5'
-  pod 'RxCocoa', '~> 5'
+  pod 'RxSwift'
+  pod 'RxCocoa'
   pod 'Alamofire', '~> 4.8'
   pod 'AlamofireImage', '~> 3.5'
-
+  pod 'RxSwiftUtilities'
 end

@@ -9,11 +9,14 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import RxSwiftUtilities
 
 class ListViewModel {
 
     private let _dataSource = BehaviorRelay<[PokemonDetails]>(value: [])
     let dataSource: Driver<[PokemonDetails]>
+
+    let activityIndicator = ActivityIndicator()
 
     var currentData: [PokemonDetails] {
         return _dataSource.value
@@ -21,34 +24,24 @@ class ListViewModel {
 
     let nextPageRelay = BehaviorRelay<Int>(value: 0)
 
-    let pageURL = BehaviorRelay<String?>(value: nil)
-
     let disposeBag = DisposeBag()
 
     init() {
         dataSource = _dataSource.asDriver()
 
-        let pageObservable = pageURL.distinctUntilChanged()
-            .flatMap { url -> Observable<String> in
-                guard let urlString = url, !urlString.isEmpty else {
-                    return Observable.empty()
-                }
-                return Observable.just(urlString)
-        }
+        let activity = activityIndicator.asObservable().startWith(false)
 
-        let a = Observable.zip(pageObservable, nextPageRelay)
-            .flatMap { NetworkManager.getPokemon(pageURL: $0.0) }
-
-        _ = a.subscribe(onNext: {
-            self.pageURL.accept($0.next)
-        })
-
-        a.map { $0.results }
+        Observable.zip(nextPageRelay, activity)
+            .flatMapLatest { (_, send) in
+                send ? Observable.empty() : NetworkManager.getPokemon().trackActivity(self.activityIndicator)
+            }
+            .map { $0.results }
             .flatMap { responseArray in
                 Observable.combineLatest( responseArray.map{ item in
                     NetworkManager.getPokemonDetails(url: item.url)
                 })
             }
+            .map { self.currentData + $0 }
             .asDriver(onErrorJustReturn: [])
             .drive(_dataSource)
             .disposed(by: disposeBag)

@@ -33,7 +33,6 @@ class ViewController: UIViewController {
         }.disposed(by: disposeBag)
 
         viewModel.nextPageRelay.accept(0)
-        viewModel.pageURL.accept("https://pokeapi.co/api/v2/pokemon")
     }
 }
 

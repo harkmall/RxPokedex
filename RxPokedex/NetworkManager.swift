@@ -47,15 +47,16 @@ struct NetworkManager {
 
     typealias PokemonDetailsCompletion = (PokemonDetails?, Error?) -> Void
 
-    static func getPokemon(pageURL: String = url) -> Observable<PokemonListResponse> {
+    static func getPokemon() -> Observable<PokemonListResponse> {
         return Observable.create { observer -> Disposable in
-            Alamofire.request(pageURL).responseData { response in
+            Alamofire.request(url).responseData { response in
                 guard let data = response.data else {
                     observer.onError(PokemonErrors.error)
                     return
                 }
                 do {
                     let response = try JSONDecoder().decode(PokemonListResponse.self, from: data)
+                    url = response.next
                     observer.onNext(response)
                 } catch {
                     observer.onError(PokemonErrors.error)
